@@ -1,7 +1,5 @@
 import React from "react";
 import './App.css';
-//VOTE APP, metodologia BEM
-//Aplikacja do głosowania na najlepsze zajęcia z FrontEndu
 class App extends React.Component {
   state = {
     items:[
@@ -17,11 +15,13 @@ class App extends React.Component {
       {name: "Wordpress", votes: 0}
     ]
   }
-  // handleClick = (index) => {
-  //   let newItems = [...this.state.items]//kopia naszej tablicy ze state
-  //   newItems[index].votes++;
-  //   this.setState({items: newItems})
-  // }
+
+  handleClick = (index) => {
+    let newItems = [...this.state.items];//kopia naszej tablicy ze state
+    newItems[index].votes++;//podnosimy sume aktualnego głosu o 1
+    this.setState({items: newItems})//aktualizujemy state
+  }
+
   render(){
     return (
       <div className="votes-board">
@@ -33,14 +33,12 @@ class App extends React.Component {
             <div className="item__name">{item.name}</div>
             <div className="item__count">{item.votes}</div>
             <div className="item__button-box">
-              {/* <button className="item__button" onClick={this.handleClick(index)}>Zagłosuj</button> */}
+              <button className="item__button" onClick={() => this.handleClick(index)}>Zagłosuj</button>
             </div>
           </div>
         )}
       </div>
     )
   }
-
 }
-
 export default App;
